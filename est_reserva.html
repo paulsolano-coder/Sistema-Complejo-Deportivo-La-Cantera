@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Formulario de cotización de reservas del Complejo Deportivo La Cantera.">
+  <title>Reserva de Canchas | La Cantera</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="est_reserva.html" aria-label="La Cantera, inicio">
+        <span class="brand-mark" aria-hidden="true">LC</span>
+        <span class="brand-copy"><strong>LA CANTERA</strong><small>COMPLEJO DEPORTIVO</small></span>
+      </a>
+      <span class="header-tag"><span class="status-dot"></span> Sistema de cotización</span>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+    <section class="intro-block">
+      <p class="eyebrow">RESERVAS · TARIFAS · IMPLEMENTOS</p>
+      <h1>Reserva de <span>canchas</span></h1>
+      <p class="intro-copy">Registra los datos de la reserva y obtén una cotización detallada, con recargos, promociones e IGV calculados automáticamente.</p>
+    </section>
+
+    <div class="form-layout">
+      <aside class="info-panel">
+        <div class="info-icon" aria-hidden="true">↗</div>
+        <h2>Todo claro antes de jugar.</h2>
+        <p>Completa los datos del cliente y el horario solicitado. El sistema aplicará las reglas comerciales vigentes.</p>
+        <div class="info-divider"></div>
+        <div class="info-row"><span class="info-number">01</span><div><strong>Horario de atención</strong><small>Todos los días · 06:00 a 23:00</small></div></div>
+        <div class="info-row"><span class="info-number">02</span><div><strong>Promoción por duración</strong><small>Desde 3 horas, la hora más económica es gratis.</small></div></div>
+        <div class="info-row"><span class="info-number">03</span><div><strong>Beneficio para socios</strong><small>20 % de descuento en el alquiler de cancha con código válido.</small></div></div>
+        <p class="info-note">Los precios indicados incluyen IGV. Los implementos se cobran una sola vez por reserva.</p>
+      </aside>
+
+      <section class="card form-card" aria-labelledby="form-title">
+        <div class="card-heading">
+          <div>
+            <p class="eyebrow">NUEVA COTIZACIÓN</p>
+            <h2 id="form-title">Datos de la reserva</h2>
+          </div>
+          <span class="required-note"><span class="required-star">*</span> Obligatorio</span>
+        </div>
+
+        <form action="est_reserva.php" method="post" accept-charset="UTF-8">
+          <div class="form-section-title"><span class="section-index">1</span><span>Información del cliente</span></div>
+          <div class="field-grid">
+            <div class="field field-full">
+              <label for="cliente">Nombre completo <span class="required-star">*</span></label>
+              <input id="cliente" name="cliente" type="text" required minlength="5" maxlength="120" autocomplete="name" placeholder="Ej. Ana Lucía Torres">
+              <small>Escribe al menos 5 caracteres.</small>
+            </div>
+            <div class="field field-full">
+              <label for="codigo_socio">Código de socio <span class="optional-label">Opcional</span></label>
+              <input id="codigo_socio" name="codigo_socio" type="text" maxlength="20" autocomplete="off" placeholder="Ej. SOC-2048">
+              <small>Formato válido: SOC- seguido de cuatro dígitos. Si no es válido, se cotizará como público general.</small>
+            </div>
+          </div>
+
+          <div class="form-section-title section-spaced"><span class="section-index">2</span><span>Cancha y horario</span></div>
+          <div class="field-grid">
+            <div class="field field-full">
+              <label for="cancha">Tipo de cancha <span class="required-star">*</span></label>
+              <select id="cancha" name="cancha" required>
+                <option value="" selected disabled>[SELECCIONE]</option>
+                <option value="futbol7">Fútbol 7</option>
+                <option value="fulbito">Fulbito (losa)</option>
+                <option value="voley">Vóley</option>
+                <option value="padel">Pádel</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="fecha">Fecha de reserva <span class="required-star">*</span></label>
+              <input id="fecha" name="fecha" type="date" required>
+            </div>
+            <div class="field">
+              <label for="hora_inicio">Hora de inicio <span class="required-star">*</span></label>
+              <div class="input-suffix"><input id="hora_inicio" name="hora_inicio" type="number" min="6" max="22" step="1" required placeholder="6–22"><span>h</span></div>
+              <small>Usa formato de 24 horas.</small>
+            </div>
+            <div class="field field-full">
+              <label for="cantidad_horas">Cantidad de horas <span class="required-star">*</span></label>
+              <div class="input-suffix"><input id="cantidad_horas" name="cantidad_horas" type="number" min="1" max="4" step="1" required placeholder="1–4"><span>horas</span></div>
+              <small>La reserva debe terminar como máximo a las 23:00.</small>
+            </div>
+          </div>
+
+          <div class="form-section-title section-spaced"><span class="section-index">3</span><span>Implementos adicionales</span><span class="optional-label">Puedes elegir varios</span></div>
+          <fieldset class="equipment-grid">
+            <legend class="visually-hidden">Selecciona los implementos adicionales</legend>
+            <label class="equipment-option"><input type="checkbox" name="implementos[]" value="chalecos"><span class="custom-check" aria-hidden="true"></span><span class="equipment-copy"><strong>Chalecos</strong><small>Juego · S/ 12.00</small></span></label>
+            <label class="equipment-option"><input type="checkbox" name="implementos[]" value="pelota"><span class="custom-check" aria-hidden="true"></span><span class="equipment-copy"><strong>Pelota</strong><small>S/ 8.00</small></span></label>
+            <label class="equipment-option"><input type="checkbox" name="implementos[]" value="raquetas"><span class="custom-check" aria-hidden="true"></span><span class="equipment-copy"><strong>Raquetas</strong><small>Par · S/ 15.00</small></span></label>
+          </fieldset>
+          <p class="equipment-hint">Las raquetas solo se alquilan para la cancha de pádel.</p>
+
+          <button class="button-primary" type="submit">Cotizar reserva <span aria-hidden="true">→</span></button>
+          <p class="form-privacy"><span aria-hidden="true">✓</span> Revisa los datos antes de generar la cotización.</p>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer"><span>LA CANTERA <span class="footer-separator">/</span> Sistema académico de reservas</span><span>Desarrollo PHP · Iniciales: EST</span></footer>
+</body>
+</html>
